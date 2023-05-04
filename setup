@@ -42,7 +42,7 @@ Set-StrictMode -Off
 $WCTEMP = "$Env:TEMP/wslcompacttemp"
 $TARGET="$($env:PSModulePath.split(';')[0])"
 Write-Host "Downloading WslCompact..." -NoNewline
-$ZIPURL=(iwr https://api.github.com/repos/okibcn/wslcompact/releases/latest | ConvertFrom-Json).assets.browser_download_url
+$ZIPURL=(iwr -useb https://api.github.com/repos/okibcn/wslcompact/releases/latest | ConvertFrom-Json).assets.browser_download_url
 Remove-Item "$WCTEMP" -force -Recurse -ErrorAction SilentlyContinue | Out-Null
 mkdir "$WCTEMP" -ErrorAction SilentlyContinue | Out-Null
 iwr $ZIPURL -OutFile "$WCTEMP/wclatest.zip"
